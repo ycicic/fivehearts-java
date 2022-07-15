@@ -1,5 +1,5 @@
 #!/bin/sh
-# ./ry.sh start 启动 stop 停止 restart 重启 status 状态
+# ./fivehearts.sh start 启动 stop 停止 restart 重启 status 状态
 AppName=target/fivehearts.jar
 
 # JVM参数
