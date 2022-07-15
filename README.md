@@ -1,27 +1,27 @@
 <p align="center">
 	<img alt="logo" src="https://oscimg.oschina.net/oscnet/up-d3d0a9303e11d522a06cd263f3079027715.png">
 </p>
-<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">RuoYi v3.8.3</h1>
+<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">FiveHearts v3.8.3</h1>
 <h4 align="center">基于SpringBoot+Vue前后端分离的Java快速开发框架</h4>
 <p align="center">
-	<a href="https://gitee.com/y_project/RuoYi-Vue/stargazers"><img src="https://gitee.com/y_project/RuoYi-Vue/badge/star.svg?theme=dark"></a>
-	<a href="https://gitee.com/y_project/RuoYi-Vue"><img src="https://img.shields.io/badge/RuoYi-v3.8.3-brightgreen.svg"></a>
-	<a href="https://gitee.com/y_project/RuoYi-Vue/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg"></a>
+	<a href="https://gitee.com/y_project/FiveHearts-Vue/stargazers"><img src="https://gitee.com/y_project/FiveHearts-Vue/badge/star.svg?theme=dark"></a>
+	<a href="https://gitee.com/y_project/FiveHearts-Vue"><img src="https://img.shields.io/badge/FiveHearts-v3.8.3-brightgreen.svg"></a>
+	<a href="https://gitee.com/y_project/FiveHearts-Vue/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg"></a>
 </p>
 
 ## 平台简介
 
-* 本仓库为RuoYi-Vue的单应用版本，保持同步更新。
-* 配套前端代码地址[RuoYi-Vue](https://gitee.com/y_project/RuoYi-Vue/tree/master/ruoyi-ui)，技术栈（[Vue2](https://cn.vuejs.org) + [Element](https://github.com/ElemeFE/element) + [Vue CLI](https://cli.vuejs.org/zh)）。
-* 配套前端代码地址[RuoYi-Vue3](https://github.com/yangzongzhuan/RuoYi-Vue3)，技术栈（[Vue3](https://v3.cn.vuejs.org) + [Element Plus](https://element-plus.org/zh-CN) + [Vite](https://cn.vitejs.dev)）。
+* 本仓库为FiveHearts-Vue的单应用版本，保持同步更新。
+* 配套前端代码地址[FiveHearts-Vue](https://gitee.com/y_project/FiveHearts-Vue/tree/master/fivehearts-ui)，技术栈（[Vue2](https://cn.vuejs.org) + [Element](https://github.com/ElemeFE/element) + [Vue CLI](https://cli.vuejs.org/zh)）。
+* 配套前端代码地址[FiveHearts-Vue3](https://github.com/yangzongzhuan/FiveHearts-Vue3)，技术栈（[Vue3](https://v3.cn.vuejs.org) + [Element Plus](https://element-plus.org/zh-CN) + [Vite](https://cn.vitejs.dev)）。
 * 前端采用Vue、Element UI。
 * 后端采用Spring Boot、Spring Security、Redis & Jwt。
 * 权限认证使用Jwt，支持多终端认证系统。
 * 支持加载动态权限菜单，多方式轻松权限控制。
 * 高效率开发，使用代码生成器可以一键生成前后端代码。
-* 提供了一个Oracle版本[RuoYi-Vue-Oracle](https://github.com/yangzongzhuan/RuoYi-Vue-Oracle)，保持同步更新。
-* 不分离版本，请移步[RuoYi](https://gitee.com/y_project/RuoYi)，微服务版本，请移步[RuoYi-Cloud](https://gitee.com/y_project/RuoYi-Cloud)
-* 阿里云折扣场：[点我进入](http://aly.ruoyi.vip)，腾讯云秒杀场：[点我进入](http://txy.ruoyi.vip)&nbsp;&nbsp;
+* 提供了一个Oracle版本[FiveHearts-Vue-Oracle](https://github.com/yangzongzhuan/FiveHearts-Vue-Oracle)，保持同步更新。
+* 不分离版本，请移步[FiveHearts](https://gitee.com/y_project/FiveHearts)，微服务版本，请移步[FiveHearts-Cloud](https://gitee.com/y_project/FiveHearts-Cloud)
+* 阿里云折扣场：[点我进入](http://aly.fivehearts.vip)，腾讯云秒杀场：[点我进入](http://txy.fivehearts.vip)&nbsp;&nbsp;
 * 阿里云优惠券：[点我领取](https://www.aliyun.com/minisite/goods?userCode=brki8iof&share_source=copy_link)，腾讯云优惠券：[点我领取](https://cloud.tencent.com/redirect.php?redirect=1025&cps_key=198c8df2ed259157187173bc7f4f32fd&from=console)&nbsp;&nbsp;
 
 ## 内置功能
@@ -50,8 +50,8 @@
 - admin/admin123  
 - 陆陆续续收到一些打赏，为了更好的体验已用于演示服务器升级。谢谢各位小伙伴。
 
-演示地址：http://vue.ruoyi.vip  
-文档地址：http://doc.ruoyi.vip
+演示地址：http://vue.fivehearts.vip  
+文档地址：http://doc.fivehearts.vip
 
 ## 演示图
 

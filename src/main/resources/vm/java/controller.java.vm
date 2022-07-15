@@ -1,59 +1,54 @@
 package ${packageName}.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.ruoyi.framework.aspectj.lang.annotation.Log;
-import com.ruoyi.framework.aspectj.lang.enums.BusinessType;
+import org.springframework.web.bind.annotation.*;
+import com.ycicic.fivehearts.framework.aspectj.lang.annotation.Log;
+import com.ycicic.fivehearts.framework.aspectj.lang.enums.BusinessType;
 import ${packageName}.domain.${ClassName};
-import ${packageName}.service.I${ClassName}Service;
-import com.ruoyi.framework.web.controller.BaseController;
-import com.ruoyi.framework.web.domain.AjaxResult;
-import com.ruoyi.common.utils.poi.ExcelUtil;
-#if($table.crud || $table.sub)
-import com.ruoyi.framework.web.page.TableDataInfo;
-#elseif($table.tree)
-#end
+import ${packageName}.service.${ClassName}Service;
+import com.ycicic.fivehearts.common.utils.poi.ExcelUtil;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 
 /**
  * ${functionName}Controller
- * 
+ *
  * @author ${author}
  * @date ${datetime}
  */
+@Api(tags = "${functionName}Controller")
 @RestController
 @RequestMapping("/${moduleName}/${businessName}")
-public class ${ClassName}Controller extends BaseController
-{
+public class ${ClassName}Controller {
+
+    private ${ClassName}Service ${className}Service;
+
     @Autowired
-    private I${ClassName}Service ${className}Service;
+    private void set${ClassName}Service(${ClassName}Service ${className}Service) {
+        this.${className}Service = ${className}Service;
+    }
 
     /**
      * 查询${functionName}列表
      */
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:list')")
     @GetMapping("/list")
+    @ApiOperation("查询${functionName}列表")
 #if($table.crud || $table.sub)
-    public TableDataInfo list(${ClassName} ${className})
-    {
-        startPage();
-        List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
-        return getDataTable(list);
+    public IPage<${ClassName}> list(@RequestParam(value = "current",defaultValue = "1") Long current,
+                      @RequestParam(value = "size",defaultValue = "10") Long size,
+                      ${ClassName} ${className}) {
+        return ${className}Service.queryPage(${className}, current, size);
     }
 #elseif($table.tree)
-    public AjaxResult list(${ClassName} ${className})
-    {
-        List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
-        return AjaxResult.success(list);
+    public List<${ClassName}> list(${ClassName} ${className}) {
+        return ${className}Service.queryList(${className});
     }
 #end
 
@@ -63,10 +58,10 @@ public class ${ClassName}Controller extends BaseController
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:export')")
     @Log(title = "${functionName}", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, ${ClassName} ${className})
-    {
-        List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
-        ExcelUtil<${ClassName}> util = new ExcelUtil<${ClassName}>(${ClassName}.class);
+    @ApiOperation("导出${functionName}列表")
+    public void export(HttpServletResponse response, ${ClassName} ${className}) {
+        List<${ClassName}> list = ${className}Service.queryList(${className});
+        ExcelUtil<${ClassName}> util = new ExcelUtil<>(${ClassName}.class);
         util.exportExcel(response, list, "${functionName}数据");
     }
 
@@ -75,9 +70,9 @@ public class ${ClassName}Controller extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:query')")
     @GetMapping(value = "/{${pkColumn.javaField}}")
-    public AjaxResult getInfo(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField})
-    {
-        return AjaxResult.success(${className}Service.select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField}));
+    @ApiOperation("获取${functionName}详细信息")
+    public ${ClassName} getInfo(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField}) {
+        return ${className}Service.getById(${pkColumn.javaField});
     }
 
     /**
@@ -86,9 +81,9 @@ public class ${ClassName}Controller extends BaseController
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:add')")
     @Log(title = "${functionName}", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody ${ClassName} ${className})
-    {
-        return toAjax(${className}Service.insert${ClassName}(${className}));
+    @ApiOperation("新增${functionName}")
+    public void add(@RequestBody ${ClassName} ${className}) {
+        ${className}Service.save(${className});
     }
 
     /**
@@ -97,9 +92,9 @@ public class ${ClassName}Controller extends BaseController
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:edit')")
     @Log(title = "${functionName}", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody ${ClassName} ${className})
-    {
-        return toAjax(${className}Service.update${ClassName}(${className}));
+    @ApiOperation("修改${functionName}")
+    public void edit(@RequestBody ${ClassName} ${className}) {
+        ${className}Service.updateById(${className});
     }
 
     /**
@@ -108,8 +103,8 @@ public class ${ClassName}Controller extends BaseController
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:remove')")
     @Log(title = "${functionName}", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{${pkColumn.javaField}s}")
-    public AjaxResult remove(@PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s)
-    {
-        return toAjax(${className}Service.delete${ClassName}By${pkColumn.capJavaField}s(${pkColumn.javaField}s));
+    @ApiOperation("删除${functionName}")
+    public void remove(@PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s) {
+        ${className}Service.removeByIds(Arrays.asList(${pkColumn.javaField}s));
     }
 }
