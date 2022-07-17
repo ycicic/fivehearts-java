@@ -1,0 +1,1 @@
+docker run -itd -p 11013:11013 --name fivehearts-java --link mysql:mysql --link myredis:redis -e JAVA_O'-Duser.timezone="Asia/Shanghai"'ai"' -e"Asia/Shanghai"hai" ccr.ccs.tencentyun.com/ycicic/fivehearts-java:latest
