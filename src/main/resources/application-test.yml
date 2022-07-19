@@ -36,8 +36,8 @@ spring:
       # 主库数据源
       master:
         url: jdbc:mysql://mysql:3306/five_hearts?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-        username: root
-        password: Ycic_buff_study
+        username: ${MYSQL_USER}
+        password: ${MYSQL_PASSWROD}
       # 从库数据源
       slave:
         # 从数据源开关/默认关闭
@@ -72,7 +72,7 @@ spring:
         allow:
         url-pattern: /druid/*
         # 控制台管理用户名和密码
-        login-username: dolphin
+        login-username: ycicic
         login-password: 123456
       filter:
         stat:

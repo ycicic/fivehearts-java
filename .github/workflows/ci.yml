@@ -1,5 +1,5 @@
 
-name: Dolphin Build and Deploy
+name: FiveHearts Build and Deploy
 
 on:
   push:
