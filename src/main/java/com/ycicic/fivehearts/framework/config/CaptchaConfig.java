@@ -23,7 +23,10 @@ public class CaptchaConfig {
         // 是否有边框 默认为true 我们可以自己设置yes，no
         properties.setProperty(KAPTCHA_BORDER, "yes");
         // 验证码文本字符颜色 默认为Color.BLACK
-        properties.setProperty(KAPTCHA_TEXTPRODUCER_FONT_COLOR, "black");
+        properties.setProperty(KAPTCHA_TEXTPRODUCER_FONT_COLOR, "234,164,164");
+        properties.setProperty(KAPTCHA_BORDER_COLOR, "254,219,208");
+        properties.setProperty(KAPTCHA_NOISE_COLOR, "251,184,172");
+        properties.setProperty(KAPTCHA_BACKGROUND_CLR_FROM, "254,234,230");
         // 验证码图片宽度 默认为200
         properties.setProperty(KAPTCHA_IMAGE_WIDTH, "160");
         // 验证码图片高度 默认为50
@@ -37,7 +40,7 @@ public class CaptchaConfig {
         // 验证码文本字体样式 默认为new Font("Arial", 1, fontSize), new Font("Courier", 1, fontSize)
         properties.setProperty(KAPTCHA_TEXTPRODUCER_FONT_NAMES, "Arial,Courier");
         // 图片样式 水纹com.google.code.kaptcha.impl.WaterRipple 鱼眼com.google.code.kaptcha.impl.FishEyeGimpy 阴影com.google.code.kaptcha.impl.ShadowGimpy
-        properties.setProperty(KAPTCHA_OBSCURIFICATOR_IMPL, "com.google.code.kaptcha.impl.WaterRipple");
+        properties.setProperty(KAPTCHA_OBSCURIFICATOR_IMPL, "com.ycicic.fivehearts.framework.config.MyRipple");
         Config config = new Config(properties);
         defaultKaptcha.setConfig(config);
         return defaultKaptcha;
