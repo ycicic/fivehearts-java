@@ -3,10 +3,12 @@ package com.ycicic.fivehearts.project.system.controller;
 import java.util.List;
 import java.util.Set;
 
+import com.alibaba.fastjson2.JSONObject;
 import com.ycicic.fivehearts.framework.security.LoginBody;
 import com.ycicic.fivehearts.framework.security.service.SysLoginService;
 import com.ycicic.fivehearts.framework.security.service.SysPermissionService;
 import com.ycicic.fivehearts.framework.web.domain.AjaxResult;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,12 +22,11 @@ import com.ycicic.fivehearts.project.system.service.ISysMenuService;
 
 /**
  * 登录验证
- * 
+ *
  * @author ycicic
  */
 @RestController
-public class SysLoginController
-{
+public class SysLoginController {
     @Autowired
     private SysLoginService loginService;
 
@@ -37,29 +38,27 @@ public class SysLoginController
 
     /**
      * 登录方法
-     * 
+     *
      * @param loginBody 登录信息
      * @return 结果
      */
+    @SneakyThrows
     @PostMapping("/login")
-    public AjaxResult login(@RequestBody LoginBody loginBody)
-    {
+    public AjaxResult login(@RequestBody LoginBody loginBody) {
         AjaxResult ajax = AjaxResult.success();
-        // 生成令牌
-        String token = loginService.login(loginBody.getUsername(), loginBody.getPassword(), loginBody.getCode(),
-                loginBody.getUuid());
+        String token = loginService.login(loginBody);
         ajax.put(Constants.TOKEN, token);
+        ajax.put(AjaxResult.DATA_TAG, JSONObject.parseObject("{\"token\":\"" + token + "\"}"));
         return ajax;
     }
 
     /**
      * 获取用户信息
-     * 
+     *
      * @return 用户信息
      */
     @GetMapping("getInfo")
-    public AjaxResult getInfo()
-    {
+    public AjaxResult getInfo() {
         SysUser user = SecurityUtils.getLoginUser().getUser();
         // 角色集合
         Set<String> roles = permissionService.getRolePermission(user);
@@ -74,12 +73,11 @@ public class SysLoginController
 
     /**
      * 获取路由信息
-     * 
+     *
      * @return 路由信息
      */
     @GetMapping("getRouters")
-    public AjaxResult getRouters()
-    {
+    public AjaxResult getRouters() {
         Long userId = SecurityUtils.getUserId();
         List<SysMenu> menus = menuService.selectMenuTreeByUserId(userId);
         return AjaxResult.success(menuService.buildMenus(menus));
